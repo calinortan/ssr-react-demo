@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import thunk from "redux-thunk";
 
 const USERS_LOADED = "USERS_LOADED";
 const FETCH_CURRENT_USER_SUCCESS = "FETCH_CURRENT_USER_SUCCESS";

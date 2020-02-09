@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAdmins } from "client/actions";
 import { Helmet } from "react-helmet-async";
+import { isAuthenticated } from "client/selectors";
 
 const Admins = () => {
   const dispatch = useDispatch();
-  const admins = useSelector(state => state.admins);
+  const admins = useSelector(isAuthenticated);
 
   useEffect(() => {
     dispatch(fetchAdmins());

@@ -5,25 +5,16 @@ import createStore from "helpers/createStore";
 import "regenerator-runtime/runtime";
 import { matchRoutes } from "react-router-config";
 import routesConfig from "client/routes/routesConfig";
-import { fetchUsersAction } from "client/actions";
 import thunk from "redux-thunk";
 import axios from "axios";
 
 const app = express();
 
-app.use(
-  "/api",
-  proxy("http://react-ssr-api.herokuapp.com", {
-    proxyReqOptDecorator: opts => {
-      opts.headers["x-forwarded-host"] = "localhost:3000";
-      return opts;
-    }
-  })
-);
+app.use("/api", proxy("http://localhost:5000"));
 app.use(express.static("public"));
 app.get("*", async (req, res) => {
   const serverAxios = axios.create({
-    baseURL: "http://react-ssr-api.herokuapp.com",
+    baseURL: "http://localhost:5000",
     headers: { cookie: req.get("cookie") || "" }
   });
 

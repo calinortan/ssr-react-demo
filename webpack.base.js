@@ -17,6 +17,19 @@ module.exports = {
             "@babel/plugin-proposal-function-bind"
           ]
         }
+      },
+      {
+        test: [/\.css$/, /\.scss$/],
+        use: [
+          "isomorphic-style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ]
       }
     ]
   }

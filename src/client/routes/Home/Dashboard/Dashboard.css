@@ -1,0 +1,10 @@
+.Dashboard {
+  margin-top: 20px;
+  height: 100%;
+}
+
+.Sidenav {
+  border-right: 1px solid rgba(0, 0, 0, 0.14);
+  height: 100%;
+  padding-top: 16px !important;
+}

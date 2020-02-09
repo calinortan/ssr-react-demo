@@ -2,29 +2,27 @@ import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import cx from "classnames";
-const Header = () => {
-  const isAuthenticated = useSelector(state => !!state.auth);
+import { isAuthenticated } from "client/selectors";
 
-  const Login = <a href="/api/auth/google">Login</a>;
-  const Logout = <a href="/api/logout">Logout</a>;
+const Header = () => {
+  const isLoggedIn = useSelector(isAuthenticated);
+
+  const Login = <a href="/api/auth">Login</a>;
+  const Logout = <a href="/api/auth/logout">Logout</a>;
 
   const isAdminsRoute = !!useRouteMatch("/admins");
-  const isUsersRoute = !!useRouteMatch("/users");
 
   return (
     <nav>
-      <div className="nav-wrapper teal">
+      <div className="nav-wrapper deep-purple">
         <Link to="/" className="brand-logo left">
-          React SSR
+          Twitter-Follower
         </Link>
         <ul id="nav-mobile" className="right">
-          <li className={cx({ active: isUsersRoute })}>
-            <Link to="/users">Users</Link>
-          </li>
           <li className={cx({ active: isAdminsRoute })}>
             <Link to="/admins">Admins</Link>
           </li>
-          <li>{isAuthenticated ? Logout : Login}</li>
+          <li>{isLoggedIn ? Logout : Login}</li>
         </ul>
       </div>
     </nav>
